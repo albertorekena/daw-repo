@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+	<title>Formulari d'inscripció Cicles</title>
+</head>
+<body>
+	<form action="http://www.formular-chef.com/Formular-Chef.cgi">
+		<input type="hidden" name="recipient" value="albertorequena.alu@iespacomolla.es" />
+		<fieldset>
+			<legend>Datos Personales</legend>
+			<div>
+				<label for="nombre">Nombre: </label>
+				<input type="text" name="nombre" id="nombre">
+				<label for="apellidos">Apellidos: </label>
+				<input type="text" name="apellidos" id="apellidos">
+				<label for="dni">DNI: </label>
+				<input type="text" name="dni" id="dni">
+			</div>
+			<div>
+				<label for="localidad-nacimiento">Localidad de Nacimiento: </label>
+				<input type="text" name="localidad-nacimiento" id="localidad-nacimiento">
+				<label for="provincia">Provincia:</label>
+				<select name="provincia" id="provincia">
+					<option value="huelva">Huelva</option>
+				</select>
+				<label for="fecha-nacimiento">Fecha Nacimiento: </label>
+				<input type="date" name="fecha-nacimiento" id="fecha-nacimiento">
+			</div>
+			<div>
+				<label for="direccion">Dirección</label>
+				<input type="text" name="direccion" id="direccion">
+				<label for="codigo-postal">Código Postal:</label>
+				<input type="number" name="codigo-postal" id="codigo-postal">
+			</div>
+		</fieldset>
+		<fieldset>
+			<legend>Forma de Acceso</legend>
+			<ul>
+				<li>
+					<input type="radio" name="directo-o-indirecto" value="directo" id="directo">
+					<label for="directo">Directo</label>
+					<ul>
+						<li>
+							<input type="radio" name="directo" value="bachillerato" id="bachillerato">
+							<label for="bachillerato">Bachillerato Log Modalidad</label>
+							<label for="modalidad">Modalidad</label>
+							<input type="text" name="modalidad" id="modalidad">
+						</li>
+						<li>
+							<input type="radio" name="directo" value="experimental" id="experimental">
+							<label for="experimental">Experimental</label>
+						</li>
+						<li>
+							<input type="radio" name="directo" value="cou" id="cou">
+							<label for="cou">COU</label>
+							<label for="opcion">Opción</label>
+							<input type="text" name="opcion" id="opcion">
+						</li>
+						<li>
+							<input type="radio" name="directo" value="fp2" id="fp2">
+							<label for="fp2">FP2</label>
+						</li>
+						<li>
+							<input type="radio" name="directo" value="otros" id="otros">
+							<label for="otros">Otros</label>
+							<label for="otros-estudios">(especifique)</label>
+							<input type="text" name="otros-estudios" id="otros-estudios">
+						</li>
+					</ul>
+				</li>
+				<li>
+					<input type="radio" name="directo-o-indirecto" value="indirecto" id="indirecto">
+					<label for="indirecto">Directo</label>
+				</li>
+			</ul>
+		</fieldset>
+		<fieldset>
+			<legend>Documentos Adjuntados</legend>
+			<div>
+				<div>
+					<input type="checkbox" name="fotocopia-dni" value="fotocopia-dni" id="fotocopia-dni">
+					<label for="fotocopia-dni">Fotocopia DNI</label>
+					<input type="checkbox" name="certificado-academico" value="certificado-academico" id="certificado-academico">
+					<label for="certificado-academico">Certificado Académico</label>
+				</div>
+			</div>
+			<input type="checkbox" name="otros-documentos" value="otros-documentos" id="otros-documentos">
+			<label for="otros-documentos">Otros documentos</label>
+			<label for="especificacion-otros-documentos">(especifique)</label>
+			<input type="text" name="especificacion-otros-documentos" id="especificacion-otros-documentos">
+		</fieldset>
+		<br>
+		<input type="submit" value="Enviar Solicitud">
+	</form>
+</body>
+</html>

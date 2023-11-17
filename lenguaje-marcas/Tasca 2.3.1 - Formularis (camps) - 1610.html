@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+	<title>Formularis (camps)</title>
+</head>
+<body>
+	<form action="http://www.formular-chef.com/Formular-Chef.cgi">
+		<input type="hidden" name="recipient" value="albertorequena.alu@iespacomolla.es" />
+		<div>
+			<label for="data">Data </label>
+			<input type="date" id="data">
+		</div>
+		<div>
+			<label for="data-i-hora">Data i Hora </label>
+			<input type="datetime-local" id="data-i-hora">
+		</div>
+		<div>
+			<label for="correu">Correu </label>
+			<input type="email" id="correu">
+		</div>
+		<div>
+			<label for="mes">Mes </label>
+			<input type="email" multiple id="mes">
+		</div>
+		<div>
+			<label for="valor-numeric">Valor numèric </label>
+			<input type="number" id="valor-numeric">
+		</div>
+		<div>
+			<label for="valor-numeric-dos-en-dos">De dos en dos </label>
+			<input type="number" step="2" id="valor-numeric-dos-en-dos">
+		</div>
+		<div>
+			<label for="contrasenya">Contrasenya </label>
+			<input type="password" id="contrasenya">
+		</div>
+		<div>
+			<label for="texto">Text </label>
+			<input type="text" id="texto">
+		</div>
+		<div>
+			<label for="telefon">Tèlefon </label>
+			<input type="number" id="telefon">
+		</div>
+		<div>
+			<label for="hora">Hora </label>
+			<input type="time" id="hora">
+		</div>
+		<div>
+			<label for="web">Web </label>
+			<input type="url" id="web">
+		</div>
+		<div>
+			<label for="semana">Semana </label>
+			<input type="text" id="semana">
+		</div>
+		<div>
+			Gènere
+			<input type="radio" name="genere" value="home" id="home">
+			<label for="home">Home </label>
+			<input type="radio" name="genere" value="dona" checked id="dona">
+			<label for="dona">Dona </label>
+			<input type="radio" name="genere" value="no-binari" id="no-binari">
+			<label for="no-binari">No binari </label>
+			<input type="radio" name="genere" value="no-informat" id="no-informat">
+			<label for="no-informat">No Informat </label>
+		</div>
+		<div>
+			<div>
+				Dispositius electrònics
+			</div>
+			<div>
+				<input type="checkbox" name="pc" id="pc">
+				<label for="pc">PC</label>
+			</div>
+			<div>
+				<input type="checkbox" name="tableta" id="tableta">
+				<label for="tableta">Tableta</label>
+			</div>
+			<div>
+				<input type="checkbox" name="mobil" id="mobil">
+				<label for="mobil">Mòbil</label>
+			</div>
+		</div>
+		<div>
+			<input name="nivell-studis" list="nivell-studis" id="nivell-studis-label">
+			<label for="nivell-studis-label">Sel·lecciona el nivel d'estudis actual (No desplegable)</label>
+			<datalist id="nivell-studis">
+				<option value="Sense estudis"/>
+			</datalist>
+		</div>
+		<div>
+			<input name="editor" list="editor" id="editor-label">
+			<label for="editor-label">Sel·lecciona el nivel d'estudis actual (No desplegable)</label>
+			<datalist id="editor">
+				<option value="Zaragoza"/>
+			</datalist>
+		</div>
+		<div>
+			<datalist name="editor" id="editor">
+				<option value="zaragoza">Zaragoza</option>
+			</datalist>
+			<label for="editor">Sel·lecciona l'editor que més t'agrada (No desplegable)</label>
+		</div>
+		<div>
+			<label for="rang">Rang</label>
+			<input type="range" name="rang" id="rang">
+		</div>
+		<div>
+			<label for="color">Color</label>
+			<input type="color" name="color" id="color">
+		</div>
+		<div>
+			<input type="file" name="archivo" id="archivo">
+		</div>
+		<div>
+			<input type="submit" value="Enviar">
+			<input type="reset" value="Borrar">
+		</div>
+	</form>
+</body>
+</html>

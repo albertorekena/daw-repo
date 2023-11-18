@@ -1,5 +1,7 @@
 // Alberto Requena Sáez
-// Descripció: Funciona correctamente. Compilar el archivo ".java" con el comando "javac U4Activitat1ARS.java -encoding UTF-8"
+// Descripció: Me falta pulir el método conseguirRespuesta para dar una respuesta en texto diferente cuando se introducen mal los datos.
+// El resto del programa funciona correctamente.
+// Compilar el archivo ".java" con el comando "javac U4Activitat1ARS.java -encoding UTF-8".
 // Métodos:
 // generarPalabra: generarLetra
 // conseguirRespuesta: comprobarRespuesta
@@ -13,17 +15,25 @@ public class U4Activitat1ARS {
 		String palabraAAdivinar;
 		String respuestaUsuario;
 		String pistaAMostrar;
-		boolean juegoResuelto = true;
+		boolean juegoResuelto = false;
+		boolean sigueConElBucle = true;
+
+		Scanner sc = new Scanner(System.in);
 
 		palabraAAdivinar = generarPalabra();
+		// palabraAAdivinar = "mtpzx";
 
 		do {
-			respuestaUsuario = conseguirRespuesta();
+			respuestaUsuario = conseguirRespuesta(sc);
 			pistaAMostrar = pista(respuestaUsuario, palabraAAdivinar);
 
-			for (int i = 0; i < pistaAMostrar.length() && juegoResuelto; i++) {
+			for (int i = 0; i < pistaAMostrar.length() && sigueConElBucle; i++) {
 				if (pistaAMostrar.charAt(i) != '0') {
-					juegoResuelto = false;
+					sigueConElBucle = false;
+				}
+
+				if (sigueConElBucle && (i == (pistaAMostrar.length() - 1))) {
+					juegoResuelto = true;
 				}
 			}
 
@@ -31,8 +41,11 @@ public class U4Activitat1ARS {
 				System.out.printf("La resposta és [%s]. Has encertat!\n\n\n", pistaAMostrar);
 			} else {
 				System.out.printf("La resposta és [%s] Continua intentant-ho\n", pistaAMostrar);
+				sigueConElBucle = true;
 			}
 		} while (!juegoResuelto);
+
+		sc.close();
 	}
 
 	private static String generarPalabra() {
@@ -41,8 +54,6 @@ public class U4Activitat1ARS {
 		for (int i = 0; i < 5; i++) {
 			palabra += generarLetra();
 		}
-
-		System.out.println("\n\n" + palabra + "\n");
 
 		return palabra;
 	}
@@ -54,22 +65,13 @@ public class U4Activitat1ARS {
 		return letra;
 	}
 	
-	private static String conseguirRespuesta() {
+	private static String conseguirRespuesta(Scanner sc) {
 		String respuesta = "";
-
-		Scanner sc = new Scanner(System.in);
 
 		do {
 			System.out.println("\nEscriu 5 lletres minúscules: ");
-			while (sc.hasNextLine()) {
-				sc.nextLine();
-				respuesta = sc.nextLine();
-				// https://www.baeldung.com/java-scanner-nosuchelementexception-reading-file
-				// https://www.google.es/search?q=java+scanner+nextline+after+isn%27t+empty&sca_esv=581645294&source=hp&ei=JnFQZYHpOZP8kdUPptqO0AE&iflsig=AO6bgOgAAAAAZVB_Nm5X0L0rux2AhI8OQboPpG2zvW6G&ved=0ahUKEwiBlMKU672CAxUTfqQEHSatAxoQ4dUDCAs&uact=5&oq=java+scanner+nextline+after+isn%27t+empty&gs_lp=Egdnd3Mtd2l6IidqYXZhIHNjYW5uZXIgbmV4dGxpbmUgYWZ0ZXIgaXNuJ3QgZW1wdHkyBRAhGKABMgUQIRigATIIECEYFhgeGB1I15cBUABY3pUBcAF4AJABBJgBvgWgAZAwqgEOMjguNC4zLjIuMC4yLjG4AQPIAQD4AQHCAgcQABiKBRhDwgIEEAAYA8ICChAAGIoFGLEDGEPCAg4QLhiABBixAxiDARjUAsICCBAuGIAEGLEDwgIOEC4YgwEY1AIYsQMYgATCAggQABiABBixA8ICBxAAGIAEGArCAgUQABiABMICBhAAGBYYHsICBBAhGBXCAgoQIRgWGB4YDxgd&sclient=gws-wiz
-			}
+			respuesta = sc.nextLine();
 		} while (!comprobarRespuesta(respuesta));
-
-		sc.close();
 
 		return respuesta;
 	}
@@ -92,17 +94,17 @@ public class U4Activitat1ARS {
 
 	private static String pista(String respuestaUsuario, String palabraAAdivinar) {
 		char[] pistaAMostrar = {'-', '-', '-', '-', '-'};
+		char letraRespuestaUsuario;
 
-		for (int i = 0; i < palabraAAdivinar.length(); i++) {
-			char letraCorrecta = palabraAAdivinar.charAt(i);
+		for (int i = 0; i < respuestaUsuario.length(); i++) {
+			letraRespuestaUsuario = respuestaUsuario.charAt(i);
 
-			if (letraCorrecta == respuestaUsuario.charAt(i)) {
-				pistaAMostrar[i] = '0';
-			} else {
-				for (int j = 0; j < respuestaUsuario.length(); j++) {
-					if (j != i) {
-						pistaAMostrar[i] = respuestaUsuario.charAt(j) == letraCorrecta ? 'X' : '-';
-					}
+			for (int j = 0; j < palabraAAdivinar.length(); j++) {
+				if (letraRespuestaUsuario == palabraAAdivinar.charAt(j)) {
+					pistaAMostrar[i] = 'X';
+				}
+				if (letraRespuestaUsuario == palabraAAdivinar.charAt(j) && j == i) {
+					pistaAMostrar[i] = '0';
 				}
 			}
 		}

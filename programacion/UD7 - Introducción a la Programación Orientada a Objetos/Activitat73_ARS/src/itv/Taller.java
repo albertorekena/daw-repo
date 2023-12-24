@@ -42,16 +42,4 @@ public class Taller {
 			}
 		} while (!salirMenu);
 	}
-
-	public String leerMatricula() {
-		String matricula;
-		matricula = gestorIO.inString();
-		return matricula;
-	}
-
-	public String modelo() {
-		String modelo;
-		modelo = gestorIO.inString();
-		return modelo;
-	}
 }

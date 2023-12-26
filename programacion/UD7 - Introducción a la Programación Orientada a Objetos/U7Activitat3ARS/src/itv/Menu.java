@@ -3,7 +3,8 @@ package itv;
 import itv.util.*;
 
 public class Menu {
-	int opcionElegida;
+	private GestorIO gestorIO = new GestorIO();
+	private Interval interval = new Interval(1, OPCIONES.length);
 
 	private static final String[] OPCIONES = {
 		"1. Alta y recepción de vehículos",
@@ -14,28 +15,38 @@ public class Menu {
 		"6. Salir del programa"
 	};
 
-	private static final GestorIO gestorIO = new GestorIO();
-	private static final Interval interval = new Interval(1, OPCIONES.length);
+	Menu() {}
 
-	public void mostrar() {
+	private void mostrar() {
+		System.out.println();
+		System.out.println();
 		for (int i = 0; i < OPCIONES.length; i++) {
 			gestorIO.out(OPCIONES[i]);
+			System.out.println();
 		}
 		gestorIO.out("Selecciona una opción: ");
 	}
 	
-	public int leerOpcion() {
+	public int opcionElegida() {
+		this.mostrar();
+		int opcionElegida;
 		boolean opcionValida = false;
-		
+		boolean primerIntento = true;
+
 		do {
-			this.opcionElegida = gestorIO.inInt();
-			opcionValida = interval.inclou((double) this.opcionElegida) ? true : false;
-			
+			opcionElegida = gestorIO.inInt();
+			opcionValida = interval.inclou((double) opcionElegida) ? true : false;
+
+			if (!primerIntento) {
+				System.out.println();
+			}
+
 			if (!opcionValida) {
 				gestorIO.out("Opción seleccionada incorrecta. Por favor, vuelve a introducir una opción: ");
+				primerIntento = false;
 			}
 		} while (!opcionValida);
 
-		return this.opcionElegida;
+		return opcionElegida;
 	}
 }

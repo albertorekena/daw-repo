@@ -1,11 +1,13 @@
 package itv;
 
 public class Box {
-	int id;
+	private int id;
+	private Fase[] fases;
 
-	private static final String[] FASES= {"Seguridad", "Sistema Eléctrico", "Emisión Humos","Frenos"};
+	public static final int NUMERO_BOXES = 6;
 
 	public Box(int id) {
 		this.id = id;
+		this.fases = new Fase[Fase.NUMERO_FASES];
 	}
 }

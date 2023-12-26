@@ -1,0 +1,22 @@
+El taller tiene 6 boxes. Y, cada box 4 fases:
+1.-Revisión inicial de elementos de seguridad
+2.-Revisión del sistema eléctrico
+3.-Revisión de la emisión de humos
+4.-Revisión de frenos y dirección
+
+Cuando llega un vehículo nuevo se guarda:
+·Número de matrícula (4 números seguidos de 3 letras)
+·Modelo
+·Tipo (coche, microbús, furgoneta o camión)
+Si no hay ningún vehículo dentro del taller que tenga el mismo número de matrícula, entonces se le pone en la cola general.
+
+El menú tiene las siguientes opciones:
+1.-Alta y Recepción del Vehículo
+2.-Reclamar Vehículo para Entrar al Box
+3.-Mover Todos los Vehículos de Fase dentro de un Box
+4.-Información del Estado de un Box Concreto
+5.-Información General de Todos los Boxes
+6.-Salir del Programa
+
+Utiliza la clase GestorIO para pedir y mostrar información.
+

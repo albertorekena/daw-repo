@@ -1,45 +1,52 @@
 package itv;
 
-import itv.util.GestorIO;
-
 public class Taller {
-	private ColaInicial colaInicial;
+	private Cola cola;
 	private Box[] boxes;
 
-	private static final int NUM_BOXES = 6;
-	private static final GestorIO gestorIO = new GestorIO();
+	Taller() {
+		this.cola = new Cola();
+		this.boxes = new Box[Box.NUMERO_BOXES];
+		for (int i = 0; i < boxes.length; i++) {
+			boxes[i] = new Box(i);
+		}
+	}
 
 	public static void main(String[] args) {
 		Taller taller = new Taller();
 		taller.iniciar();
 	}
 
-	Taller() {
-		boxes = new Box[NUM_BOXES];
-		for (int i = 0; i < NUM_BOXES; i++) {
-			boxes[i] = new Box(i);
-		}
-	}
-
-	public void iniciar() {
+	public int iniciar() {
 		Menu menu = new Menu();
 		int opcionElegida;
-		String matricula;
-		String modelo;
 		boolean salirMenu = false;
 
 		do {
-			menu.mostrar();
-			opcionElegida = menu.leerOpcion();
+			opcionElegida = menu.opcionElegida();
 
 			switch (opcionElegida) {
 				case 1:
-					matricula = gestorIO.inString();
-					modelo = gestorIO.inString();
+					boolean vehiculoValido;
+					String matricula = ;
+					String modelo;
+					TipoVehiculo tipoVehiculo;
+					break;
+				case 2:
+					break;
+				case 3:
+					break;
+				case 4:
+					break;
+				case 5:
+					break;
+				case 6:
 					break;
 				default:
 					break;
 			}
 		} while (!salirMenu);
+
+		return opcionElegida;
 	}
 }

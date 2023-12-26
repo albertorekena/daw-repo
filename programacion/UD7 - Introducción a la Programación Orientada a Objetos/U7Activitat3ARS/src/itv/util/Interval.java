@@ -5,7 +5,7 @@ public class Interval {
   private double superior;
 
   public Interval(double inferior, double superior) {
-    assert superior >= inferior;
+    assert inferior <= superior;
     this.inferior = inferior;
     this.superior = superior;
   }

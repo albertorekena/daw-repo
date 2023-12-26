@@ -1,6 +1,6 @@
 package itv;
 
-public enum TipusVehicle {
+public enum TipoVehiculo {
 	COTXE,
 	MICROBUS,
 	FURGONETA,

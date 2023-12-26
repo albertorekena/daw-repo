@@ -1,0 +1,31 @@
+Al finalizar la revisión se cobra al cliente un precio.
+
+La revisión tiene un precio base de 15€ por cada cilindro que tenga el motor del vehículo:
+·Coche y Microbus: 2-6 cilindros
+·Furgoneta: 4-10 cilindros
+·Camión: 8-16 cilindros
+
+Cantidades adicionales:
+·Coche: 1,5€/plaza a partir de las 3 plazas
+·Coche: 10€ si supera 1.200cc
+·Microbus: 2€/plaza a partir de las 3 plazas
+·Furgoneta y Camión:
+	·3€/tonelada < 10 cilindros
+	·4€/tonelada >= 10 cilindros
+·Camión:
+	·40€
+	·1,20 * El precio base
+	·20€ >= 2000cc
+
+El menú tiene las siguientes opciones:
+1.-Alta y Recepción del Vehículo
+2.-Reclamar Vehículo para Entrar al Box
+3.-Mover Todos los Vehículos de Fase dentro de un Box
+4.-Información del Estado de un Box Concreto
+5.-Información General de Todos los Boxes
+6.-Calcular y Pagar Vehículo Revisado
+7.-Cálculo de Ingresos
+8.-Salir del Programa
+
+El orden de cobro se hace por orden de cola.
+El programa guardará todas las revisiones pagadas.

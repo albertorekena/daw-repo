@@ -12,7 +12,7 @@ public class Cola {
 	}
 
 	public void mostrarVehiculos() {
-		System.out.println("Cola de coches para ser atendidos en los diferentes boxes:\n");
+		System.out.println("Cola de coches ACTUALIZADA:\n");
 		for (int i = 0; i < this.cola.length && this.cola[i] != null; i++) {
 			System.out.printf("Posición vehículo --> %d\n", i);
 			this.cola[i].mostrarVehiculo();

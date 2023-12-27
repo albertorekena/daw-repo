@@ -1,11 +1,12 @@
 package itv;
 
-import itv.util.GestorIO;
+// import itv.util.GestorIO;
 
 public class Taller {
 	private Cola cola = null;
 	private Box[] boxes;
-	private GestorIO gestorIO = new GestorIO();
+	private Vehiculo[] todosLosVehiculos = new Vehiculo[Cola.MAX_LONGITUD_COLA + (Box.NUMERO_BOXES * Fase.FASES.length)];
+	// private GestorIO gestorIO = new GestorIO();
 
 	Taller() {
 		this.cola = new Cola();
@@ -29,53 +30,41 @@ public class Taller {
 
 			switch (opcionElegida) {
 				case 1:
-					boolean matriculaYaEnTaller = false;
 					boolean vehiculoAdmitido = false;
 
 					System.out.println("\n\n---- OPCION 1 SELECCIONADA ----");
-					Vehiculo vehiculo = Vehiculo.vehiculoValido();
-					String matriculaVehiculo = vehiculo.getMatricula();
 
-					for (int i = 0; i < this.cola.getVehiculos().length && this.cola.getVehiculos()[i] != null; i++) {
-						if (matriculaVehiculo.equals(this.cola.getVehiculos()[i].getMatricula())) {
-							matriculaYaEnTaller = true;
-						}
-					}
+					Vehiculo vehiculo = Vehiculo.vehiculoValido(todosLosVehiculos);
 
-					if (!matriculaYaEnTaller) {
-						for (int i = 0; i < this.boxes.length && this.boxes[i] != null; i++) {
-							for (int j = 0; j < this.boxes[i].getFases().length && this.boxes[i].getFases()[j] != null; j++) {
-								if (matriculaVehiculo.equals(this.boxes[i].getFases()[j].getVehiculo().getMatricula())) {
-									matriculaYaEnTaller = true;
+					for (int i = 0; i < cola.getVehiculos().length && !vehiculoAdmitido; i++) {
+						if (cola.getVehiculos()[i] == null) {
+							cola.getVehiculos()[i] = vehiculo;
+
+							for (int j = 0; j < todosLosVehiculos.length && !vehiculoAdmitido; j++) {
+								if (todosLosVehiculos[j] == null) {
+									todosLosVehiculos[j] = vehiculo;
+									vehiculoAdmitido = true;
 								}
 							}
+
+							System.out.println("\n\n-------------------------------------\n");
+							this.cola.mostrarVehiculos();
+							System.out.println("-------------------------------------");
 						}
-					}
-
-					if (!matriculaYaEnTaller) {
-						for (int i = 0; i < cola.getVehiculos().length && !vehiculoAdmitido; i++) {
-							if (cola.getVehiculos()[i] == null) {
-								cola.getVehiculos()[i] = vehiculo;
-								vehiculoAdmitido = true;
-
-								System.out.println("\n\n-------------------------------------\n");
-								this.cola.mostrarVehiculos();
-								System.out.println("-------------------------------------");
-							}
-						}
-					}
-
-					if (matriculaYaEnTaller) {
-						System.out.println("\nESTA OPERACIÓN NO PUEDE SER PROCESADA. Ya hay un vehículo en el taller con la misma matrícula.");
-						System.out.println("Pulsa la tecla enter para continuar");
-						gestorIO.inString();
-						System.out.println("\n-------------------------------------");
 					}
 					break;
 
 				case 2:
 					System.out.println("\n\n---- OPCION 2 SELECCIONADA ----");
 
+					int boxElegido;
+
+					System.out.println("\n[1]  [2]  [3]  [4]  [5]  [6]");
+					System.out.println("Indica el Box al cual se dirigirá el vehículo: ");
+
+					do {
+						
+					} while ();
 					break;
 				case 3:
 					break;

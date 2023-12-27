@@ -18,35 +18,31 @@ public class Menu {
 	Menu() {}
 
 	private void mostrar() {
-		System.out.println();
-		System.out.println();
+		System.out.print("\n\n");
 		for (int i = 0; i < OPCIONES.length; i++) {
 			gestorIO.out(OPCIONES[i]);
-			System.out.println();
+			System.out.print("\n");
 		}
+		System.out.print("\n");
 		gestorIO.out("Selecciona una opción: ");
 	}
 	
 	public int opcionElegida() {
 		this.mostrar();
-		int opcionElegida;
+
+		int opcionElegida = 0;
 		boolean opcionValida = false;
-		boolean primerIntento = true;
 
 		do {
-			opcionElegida = gestorIO.inInt();
-			opcionValida = interval.inclou((double) opcionElegida) ? true : false;
-
-			if (!primerIntento) {
-				System.out.println();
-			}
+			try {
+				opcionElegida = Integer.parseInt(gestorIO.inString());
+				opcionValida = interval.inclou((double) opcionElegida) ? true : false;
+			} catch (Exception e) {}
 
 			if (!opcionValida) {
-				gestorIO.out("Opción seleccionada incorrecta. Por favor, vuelve a introducir una opción: ");
-				primerIntento = false;
+				gestorIO.out("\nOpción seleccionada incorrecta. Por favor, vuelve a indicar una opción: ");
 			}
 		} while (!opcionValida);
-
 		return opcionElegida;
 	}
 }

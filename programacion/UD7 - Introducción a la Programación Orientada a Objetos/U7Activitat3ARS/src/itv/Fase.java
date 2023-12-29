@@ -12,6 +12,10 @@ public class Fase {
 	}
 	
 	public void setVehiculo(Vehiculo vehiculo) {
-		this.vehiculo = vehiculo;
+		this.vehiculo = new Vehiculo(vehiculo);
+	}
+
+	public boolean disponible() {
+		return this.vehiculo == null ? true : false;
 	}
 }

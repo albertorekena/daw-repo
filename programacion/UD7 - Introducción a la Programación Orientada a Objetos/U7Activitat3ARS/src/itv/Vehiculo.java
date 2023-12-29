@@ -13,6 +13,10 @@ public class Vehiculo {
 		this.tipoVehiculo = tipoVehiculo;
 	}
 
+	Vehiculo(Vehiculo vehiculo) {
+		this(vehiculo.matricula, vehiculo.modelo, vehiculo.tipoVehiculo);
+	}
+
 	public String getMatricula() {
 		return this.matricula;
 	}
@@ -25,29 +29,28 @@ public class Vehiculo {
 		String modelo;
 		int tipoVehiculoNumeroOpcion = 0;
 		TipoVehiculo tipoVehiculo;
-		
-		System.out.println("Por favor, introduce los siguientes datos.\n");
-		
+
+		gestorIO.out("Por favor, introduce los siguientes datos.\n\n");
+
 		do {
 			matriculaYaEnTaller = false;
-			System.out.print("Matrícula(4 cifras y 3 letras mayúsculas): ");
+			gestorIO.out("Matrícula(4 cifras y 3 letras mayúsculas): ");
 			matricula = gestorIO.inString();
 			if (matricula.matches("^[0-9]{4}[A-Z]{3}$")) {
 				for (int i = 0; i < todosLosVehiculos.length && todosLosVehiculos[i] != null; i++) {
 					if (matricula.equals(todosLosVehiculos[i].matricula)) {
-						System.out.println("YA HAY UN VEHÍCULO CON ESA MATRÍCULA EN EL TALLER. Por favor, vuelve a introducir el dato.");
+						gestorIO.out("YA HAY UN VEHÍCULO CON ESA MATRÍCULA EN EL TALLER. Por favor, vuelve a introducir el dato.\n");
 						matriculaYaEnTaller = true;
 					}
 				}
 			}
 		} while (!matricula.matches("^[0-9]{4}[A-Z]{3}$") || matriculaYaEnTaller);
 
-		System.out.print("\nModelo: ");
+		gestorIO.out("\nModelo: ");
 		modelo = gestorIO.inString();
 
 		do {
-			System.out.println("\n[1] Coche   [2] Furgoneta   [3] Microbús   [4] Camión   [5] Otro");
-			System.out.print("Tipo de Vehiculo: ");
+			gestorIO.out("\n[1] Coche   [2] Furgoneta   [3] Microbús   [4] Camión   [5] Otro\nTipo de Vehiculo: ");
 			try {
 				tipoVehiculoNumeroOpcion = Integer.parseInt(gestorIO.inString());
 			} catch (Exception e) {}

@@ -22,7 +22,7 @@ public class Taller {
 		}
 	}
 
-	public void iniciar() {
+	private void iniciar() {
 		Menu menu = new Menu();
 		int opcionElegida;
 
@@ -31,32 +31,31 @@ public class Taller {
 
 			switch (opcionElegida) {
 				case 1:
-					boolean vehiculoAdmitido = false;
-
 					gestorIO.out("\n\n-------------------------------------\n");
 					gestorIO.out("-------- OPCION 1 SELECCIONADA ------\n");
 					gestorIO.out("-------------------------------------\n\n");
-
+				
 					Vehiculo vehiculo = Vehiculo.vehiculoValido(todosLosVehiculos);
+					boolean vehiculoAdmitido = this.cola.vehiculoLlegaACola(vehiculo);
 
-					for (int i = 0; i < cola.getVehiculos().length && !vehiculoAdmitido; i++) {
-						if (cola.getVehiculos()[i] == null) {
-							cola.getVehiculos()[i] = vehiculo;
-
-							for (int j = 0; j < todosLosVehiculos.length && !vehiculoAdmitido; j++) {
-								if (todosLosVehiculos[j] == null) {
-									todosLosVehiculos[j] = vehiculo;
-									vehiculoAdmitido = true;
-								}
+					if (vehiculoAdmitido) {
+						boolean vehiculoAnyadido = false;
+						for (int j = 0; j < todosLosVehiculos.length && !vehiculoAnyadido; j++) {
+							if (todosLosVehiculos[j] == null) {
+								todosLosVehiculos[j] = vehiculo;
+								vehiculoAnyadido = true;
+								gestorIO.out("\n El vehículo ha sido introducido correctamente en el sistema.");
 							}
-
-							gestorIO.out("\n\n-------------------------------------\n\n");
-							this.cola.mostrarVehiculos();
-							gestorIO.out("-------------------------------------\n");
 						}
+					} else {
+						gestorIO.out("\n El vehículo No ha sido introducido en el sistema. NO caben más vehículos en la cola.");
 					}
+
+					gestorIO.out("\n\n-------------------------------------\n\n");
+					this.cola.mostrarVehiculos();
+					gestorIO.out("-------------------------------------\n");
 					break;
-					
+
 				case 2:
 					gestorIO.out("\n\n-------------------------------------\n");
 					gestorIO.out("-------- OPCION 2 SELECCIONADA ------\n");
@@ -64,11 +63,10 @@ public class Taller {
 
 					int boxElegido;
 
-					this.impresionNumerosBoxes();
+					this.impresionNumerosBoxesSegunOcupadoParaEntrar();
 					gestorIO.out("Indica el Box al cual se dirigirá el vehículo: ");
-					boxElegido = this.numeroValidoBox();
-					this.boxes[boxElegido].getFases()[0].setVehiculo(this.cola.getVehiculos()[0]);
-					this.cola.vehiculoDejaColaYEntraBox();
+					boxElegido = this.numeroValidoMeterCocheBox();
+					this.boxes[boxElegido].meterCoche(this.cola.vehiculoEntraABox());
 
 					gestorIO.out("\nEl vehículo correspondiente de la cola ha pasado al box seleccionado.");
 					
@@ -78,6 +76,13 @@ public class Taller {
 					break;
 
 				case 3:
+					gestorIO.out("\n\n-------------------------------------\n");
+					gestorIO.out("-------- OPCION 3 SELECCIONADA ------\n");
+					gestorIO.out("-------------------------------------\n\n");
+
+					this.impresionNumerosBoxesSegunVacio();
+					gestorIO.out("Indica el número de Box en el que quieres que avancen los vehículos: ");
+					
 					break;
 				case 4:
 					break;
@@ -89,9 +94,9 @@ public class Taller {
 		} while (opcionElegida != 6);
 	}
 
-	private void impresionNumerosBoxes() {
+	private void impresionNumerosBoxesSegunOcupadoParaEntrar() {
 		for (int i = 0; i < boxes.length; i++) {
-			String impresionNumeroBoxSegunDisponibilidad = boxes[i].disponible() ? String.valueOf(i) : "";
+			String impresionNumeroBoxSegunDisponibilidad = boxes[i].disponible() ? String.valueOf(i) : "OCUPADO";
 			if (i < boxes.length - 1) {
 				System.out.printf("[%s]  ", impresionNumeroBoxSegunDisponibilidad);
 			} else {
@@ -100,7 +105,7 @@ public class Taller {
 		}
 	}
 
-	private int numeroValidoBox() {
+	private int numeroValidoMeterCocheBox() {
 		int boxElegido = -1;
 		boolean numeroBoxElegidoCorrecto = false;
 		Interval intervalBoxes = new Interval(this.NUMERO_BOXES - 1);
@@ -116,16 +121,35 @@ public class Taller {
 				numeroBoxElegidoDisponible = this.boxes[boxElegido].disponible();
 				if (!numeroBoxElegidoDisponible) {
 					gestorIO.out("\n");
-					this.impresionNumerosBoxes();
+					this.impresionNumerosBoxesSegunOcupadoParaEntrar();
 					gestorIO.out("El box seleccionado se encuentra ocupado. Por favor, elige uno entre las opciones disponibles: ");
 				}
 			} else {
 				gestorIO.out("\n");
-				this.impresionNumerosBoxes();
+				this.impresionNumerosBoxesSegunOcupadoParaEntrar();
 				gestorIO.out("El número de box indicado es incorrecto. Por favor, vuelve a introducir el dato: ");
 			}
 		} while (!numeroBoxElegidoCorrecto || !numeroBoxElegidoDisponible);
 
 		return boxElegido;
 	}
+
+	private void impresionNumerosBoxesSegunVacio() {
+		for (int i = 0; i < this.boxes.length; i++) {
+			boolean boxVacio = false;
+			boxVacio = this.boxes[i].boxVacio();
+
+			if (!boxVacio) {
+				System.out.printf("[%s] ", i);
+			} else {
+				gestorIO.out("[VACIO] ");
+			}
+
+			if (i == this.boxes.length - 1) {
+				gestorIO.out("\n");
+			}
+		}
+	}
+
+	
 }

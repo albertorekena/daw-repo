@@ -8,7 +8,20 @@ public class Cola {
 	Cola() {}
 
 	public Vehiculo[] getVehiculos() {
-		return this.vehiculos;
+		return this.vehiculos.clone();
+	}
+
+	public boolean vehiculoLlegaACola(Vehiculo vehiculo) {
+		boolean vehiculoAdmitido = false;
+
+		for (int i = 0; i < this.vehiculos.length && !vehiculoAdmitido; i++) {
+			if (this.vehiculos[i] == null) {
+				this.vehiculos[i] = vehiculo;
+				vehiculoAdmitido = true;
+			}
+		}
+
+		return vehiculoAdmitido;
 	}
 
 	public void mostrarVehiculos() {
@@ -20,7 +33,7 @@ public class Cola {
 		}
 	}
 
-	public void vehiculoDejaColaYEntraBox() {
+	private void vehiculoDejaColaYEntraBox() {
 		for (int i = 0; i < vehiculos.length && vehiculos[i] != null; i++) {
 			if (vehiculos[i + 1] != null) {
 				vehiculos[i] = new Vehiculo(vehiculos[i + 1]); 
@@ -28,5 +41,11 @@ public class Cola {
 				vehiculos[i] = null;
 			}
 		}
+	}
+
+	public Vehiculo vehiculoEntraABox() {
+		Vehiculo vehiculo = new Vehiculo(vehiculos[0]);
+		this.vehiculoDejaColaYEntraBox();
+		return vehiculo;
 	}
 }

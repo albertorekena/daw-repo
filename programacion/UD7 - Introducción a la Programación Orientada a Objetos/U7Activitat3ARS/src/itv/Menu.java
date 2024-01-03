@@ -21,11 +21,9 @@ public class Menu {
 	private void mostrar() {
 		System.out.print("\n\n");
 		for (int i = 0; i < OPCIONES.length; i++) {
-			gestorIO.out(OPCIONES[i]);
-			System.out.print("\n");
+			gestorIO.out(OPCIONES[i] + "\n");
 		}
-		System.out.print("\n");
-		gestorIO.out("Selecciona una opción: ");
+		gestorIO.out("\nSelecciona una opción: ");
 	}
 	
 	public int opcionElegida() {

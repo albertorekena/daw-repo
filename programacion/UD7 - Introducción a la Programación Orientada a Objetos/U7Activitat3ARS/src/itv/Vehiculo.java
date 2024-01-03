@@ -23,6 +23,7 @@ public class Vehiculo {
 
 	public static Vehiculo vehiculoValido(Vehiculo[] todosLosVehiculos) {
 		GestorIO gestorIO = new GestorIO();
+		Interval interval = new Interval(1, 5);
 		
 		String matricula;
 		boolean matriculaYaEnTaller = false;
@@ -54,7 +55,7 @@ public class Vehiculo {
 			try {
 				tipoVehiculoNumeroOpcion = Integer.parseInt(gestorIO.inString());
 			} catch (Exception e) {}
-		} while (tipoVehiculoNumeroOpcion < 1 && 5 < tipoVehiculoNumeroOpcion);
+		} while (interval.inclou(tipoVehiculoNumeroOpcion));
 		tipoVehiculo = TipoVehiculo.values()[tipoVehiculoNumeroOpcion - 1];
 
 		return new Vehiculo(matricula, modelo, tipoVehiculo);

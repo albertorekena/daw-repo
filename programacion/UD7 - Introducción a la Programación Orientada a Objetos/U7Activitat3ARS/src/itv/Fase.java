@@ -7,11 +7,11 @@ public class Fase {
 
 	Fase() {}
 
-	public Vehiculo getVehiculo() {
+	public Vehiculo getFaseVehiculo() {
 		return this.vehiculo;
 	}
 	
-	public void setVehiculo(Vehiculo vehiculo) {
+	public void setFaseVehiculo(Vehiculo vehiculo) {
 		this.vehiculo = new Vehiculo(vehiculo);
 	}
 

@@ -6,8 +6,8 @@ public class Taller {
 	private Cola cola = null;
 	private Box[] boxes;
 	public final int NUMERO_BOXES = 6;
-	private Vehiculo[] todosLosVehiculosDentroTaller = new Vehiculo[Cola.MAX_LONGITUD_COLA + (this.NUMERO_BOXES * Fase.FASES.length)];
-	private Vehiculo[] todosLosVehiculosSalidos = new Vehiculo[1000];
+	private Vehiculo[] todosLosVehiculosEnGestion = new Vehiculo[Cola.MAX_LONGITUD_COLA + (this.NUMERO_BOXES * Fase.FASES.length)];
+	private Vehiculo[] todosLosVehiculosGestionados = new Vehiculo[1000];
 	private GestorIO gestorIO = new GestorIO();
 
 	Taller() {
@@ -30,33 +30,34 @@ public class Taller {
 		do {
 			opcionElegida = menu.opcionElegida();
 			int boxElegido;
+			boolean todosLosBoxesVacios;
 
 			switch (opcionElegida) {
 				case 1:
 					gestorIO.out("\n\n-------------------------------------\n");
 					gestorIO.out("-------- OPCION 1 SELECCIONADA ------\n");
 					gestorIO.out("-------------------------------------\n\n");
-				
-					Vehiculo vehiculo = Vehiculo.vehiculoValido(todosLosVehiculosDentroTaller);
+
+					Vehiculo vehiculo = Vehiculo.vehiculoValido(todosLosVehiculosEnGestion.clone());
 					int posicionVehiculoEnCola = this.cola.vehiculoLlegaACola(vehiculo);
 
 					if (posicionVehiculoEnCola != -1) {
 						boolean vehiculoAnyadido = false;
-						for (int j = 0; j < todosLosVehiculosDentroTaller.length && !vehiculoAnyadido; j++) {
-							if (todosLosVehiculosDentroTaller[j] == null) {
-								todosLosVehiculosDentroTaller[j] = vehiculo;
+						for (int j = 0; j < todosLosVehiculosEnGestion.length && !vehiculoAnyadido; j++) {
+							if (todosLosVehiculosEnGestion[j] == null) {
+								todosLosVehiculosEnGestion[j] = vehiculo;
 								vehiculoAnyadido = true;
-								gestorIO.out("\n El vehículo ha sido introducido correctamente en el sistema.");
-								gestorIO.out("\nPosición del vehículo en la cola " + posicionVehiculoEnCola);
+								gestorIO.out("\n\n-------------------------------------");
+								gestorIO.out("\n\nEL VEHICULO HA SIDO INTRODUCIDO CORRECTAMENTE EN EL SISTEMA.");
+								gestorIO.out("\nPosición del vehículo en la cola --> " + posicionVehiculoEnCola + "\n");
 							}
 						}
 					} else {
-						gestorIO.out("\n El vehículo No ha sido introducido en el sistema. NO caben más vehículos en la cola.");
+						gestorIO.out("\n\n-------------------------------------");
+						gestorIO.out("\n\n El vehículo No ha sido introducido en el sistema. NO caben más vehículos en la cola.\n");
 					}
 
-					gestorIO.out("\n\n-------------------------------------\n\n");
 					this.cola.mostrarVehiculos();
-					gestorIO.out("-------------------------------------\n");
 					break;
 
 				case 2:
@@ -69,11 +70,10 @@ public class Taller {
 					boxElegido = this.numeroValidoMeterCocheBox();
 					this.boxes[boxElegido].meterCoche(this.cola.vehiculoEntraABox());
 
-					gestorIO.out("\nEl vehículo correspondiente de la cola ha pasado al box seleccionado.");
+					gestorIO.out("\n\n-------------------------------------");
+					gestorIO.out("\n\nEL VEHICULO CORRESPONDIENTE DE LA COLA HA PASADO AL BOX SELECCIONADO.");
 					
-					gestorIO.out("\n\n-------------------------------------\n\n");
 					this.cola.mostrarVehiculos();
-					gestorIO.out("-------------------------------------\n");
 					break;
 
 				case 3:
@@ -81,16 +81,42 @@ public class Taller {
 					gestorIO.out("-------- OPCION 3 SELECCIONADA ------\n");
 					gestorIO.out("-------------------------------------\n\n");
 
-					this.impresionNumerosBoxesSegunVacio();
-					gestorIO.out("Indica el número de Box en el que quieres que avancen los vehículos: ");
-					this.moverCochesDentroBox();
+					gestorIO.out("\n");
+					todosLosBoxesVacios = this.impresionNumerosBoxesSegunVacio();
+					if (!todosLosBoxesVacios) {
+						gestorIO.out("Indica el número de Box en el que quieres que avancen los vehículos: ");
+						this.moverCochesDentroBox();
+					} else {
+						gestorIO.out("-------------------------------------\n");
+						gestorIO.out("TODOS LOS BOXES ESTAN VACIOS. NO PUEDES MOVER VEHICULOS");
+						gestorIO.out("\n-------------------------------------\n");
+					}
 					break;
 
 				case 4:
+					gestorIO.out("\n\n-------------------------------------\n");
+					gestorIO.out("-------- OPCION 4 SELECCIONADA ------\n");
+					gestorIO.out("-------------------------------------\n\n");
+
+					gestorIO.out("Indica el número de Box del que quieres mostrar la informacion: ");
+					boxElegido = this.elegirNumeroBox();
+					this.boxes[boxElegido].mostrarEstadoDentroDelBox();
 					break;
+
 				case 5:
+					gestorIO.out("\n\n-------------------------------------\n");
+					gestorIO.out("-------- OPCION 5 SELECCIONADA ------\n");
+					gestorIO.out("-------------------------------------\n\n");
+
+					for (int i = 0; i < this.boxes.length; i++) {
+						gestorIO.out("---- BOX " + i + " ----");
+						this.boxes[i].mostrarEstadoDentroDelBox();
+						gestorIO.out("\n\n");
+					}
 					break;
+
 				default:
+					gestorIO.out("\n\n---- PROGRAMA TERMINADO ----\n\n");
 					break;
 			}
 		} while (opcionElegida != 6);
@@ -145,31 +171,48 @@ public class Taller {
 		return boxElegido;
 	}
 
-	private void impresionNumerosBoxesSegunVacio() {
+	private boolean impresionNumerosBoxesSegunVacio() {
+		boolean todosLosBoxesVacios = true;
+		
 		for (int i = 0; i < this.boxes.length; i++) {
 			boolean boxVacio = false;
 			boxVacio = this.boxes[i].boxVacio();
 
 			if (!boxVacio) {
-				System.out.printf("[%s] ", i);
+				System.out.printf("[%s]", i);
+				todosLosBoxesVacios = false;
 			} else {
-				gestorIO.out("[VACIO] ");
+				gestorIO.out("[VACIO]");
 			}
 
-			if (i == this.boxes.length - 1) {
+			if (i < this.boxes.length - 1) {
+				gestorIO.out("   ");
+			} else {
 				gestorIO.out("\n");
 			}
 		}
+
+		return todosLosBoxesVacios;
 	}
 
 	private void moverCochesDentroBox() {
 		int boxElegido = this.elegirNumeroBox();
 
 		if (!this.boxes[boxElegido].boxVacio()) {
-			
+			if (this.boxes[boxElegido].vehiculoEnUltimaFase() != null) {
+				for (int i = todosLosVehiculosGestionados.length - 1; i > 0; i--) {
+					if (todosLosVehiculosGestionados[i] != null) {
+						todosLosVehiculosGestionados[i + 1] = todosLosVehiculosGestionados[i]; 
+					}
+				}
+
+				todosLosVehiculosGestionados[0] = new Vehiculo(this.boxes[boxElegido].vehiculoEnUltimaFase());
+			}
+
 			this.boxes[boxElegido].moverCochesBox();
+			gestorIO.out("Los vehículos han cambiado de fase correctamente dentro del box.");
 		} else {
-			gestorIO.out("\nEl box que has seleccionado se encuentra vacío. No hay coches que mover.");
+			gestorIO.out("\nEl box que has seleccionado se encuentra VACIO. NO hay coches que mover.");
 		}
 	}
 }

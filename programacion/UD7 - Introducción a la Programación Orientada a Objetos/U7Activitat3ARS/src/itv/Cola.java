@@ -1,9 +1,13 @@
 package itv;
 
+import itv.util.GestorIO;
+
 public class Cola {
 	public static final int MAX_LONGITUD_COLA = 50;
 
 	private Vehiculo[] colaVehiculos = new Vehiculo[MAX_LONGITUD_COLA];
+
+	private GestorIO gestorIO = new GestorIO();
 
 	Cola() {}
 
@@ -23,12 +27,15 @@ public class Cola {
 	}
 
 	public void mostrarVehiculos() {
-		System.out.println("Cola de coches ACTUALIZADA:\n");
+		gestorIO.out("\n\nCola de coches ACTUALIZADA:\n");
+
 		for (int i = 0; i < this.colaVehiculos.length && this.colaVehiculos[i] != null; i++) {
-			System.out.printf("Posición vehículo --> %d\n", i);
+			System.out.printf("·Posición vehículo --> %d\n", i);
 			this.colaVehiculos[i].mostrarVehiculo();
 			System.out.print("\n");
 		}
+
+		gestorIO.out("\n-------------------------------------\n");
 	}
 
 	private void vehiculoDejaCola() {

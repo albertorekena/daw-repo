@@ -1,44 +1,54 @@
 package itv;
 
 public class Box {
-	private Fase[] boxFases;
+	private Fase[] fases;
 
 	public Box() {
-		this.boxFases = new Fase[Fase.FASES.length];
-		for (int i = 0; i < boxFases.length; i++) {
-			this.boxFases[i] = new Fase();
+		this.fases = new Fase[Fase.FASES.length];
+		for (int i = 0; i < fases.length; i++) {
+			this.fases[i] = new Fase(i, Fase.FASES[i]);
 		}
 	}
 
-	public Fase[] getBoxFases() {
-		return this.boxFases.clone();
+	public Fase[] getfases() {
+		return this.fases.clone();
 	}
 
 	public boolean disponible() {
-		return (this.boxFases[0].disponible()) ? true : false;
+		return !this.fases[0].vacio() ? true : false;
 	}
 
 	public void meterCoche(Vehiculo vehiculo) {
-		this.boxFases[0].setFaseVehiculo(vehiculo);
+		this.fases[0].setFaseVehiculo(vehiculo);
 	}
 
 	public boolean boxVacio() {
 		boolean boxVacio = true;
 
-		for (int i = 0; i < this.boxFases.length && boxVacio; i++) {
-			boxVacio = this.boxFases[i].disponible() ? false : true;
+		for (int i = 0; i < this.fases.length && !boxVacio; i++) {
+			boxVacio = this.fases[i].vacio() ? true : false;
 		}
 
 		return boxVacio;
 	}
 
-	public Vehiculo moverCochesBox() {
-		Vehiculo vehiculo = null;
-		
-		for (int i = this.boxFases.length - 1; i >= 0; i--) {
-			if (this.boxFases[i].len)
-		}
+	public Vehiculo vehiculoEnUltimaFase() {
+		return this.fases[this.fases.length - 1].getFaseVehiculo();
+	}
+	
+	public void moverCochesBox() {
+		for (int i = this.fases.length - 1; i > 0; i--) {
+			if (this.fases[i - 1].getFaseVehiculo() != null) {
+				this.fases[i].setFaseVehiculo(this.fases[i - 1].getFaseVehiculo());
+			}
 
-		return vehiculo;
+			this.fases[0].setFaseVehiculo(null);
+		}
+	}
+
+	public void mostrarEstadoDentroDelBox() {
+		for (int i = 0; i < this.fases.length; i++) {
+			this.fases[i].mostrarFaseVehiculo();
+		}
 	}
 }

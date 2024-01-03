@@ -23,7 +23,7 @@ public class Vehiculo {
 
 	public static Vehiculo vehiculoValido(Vehiculo[] todosLosVehiculos) {
 		GestorIO gestorIO = new GestorIO();
-		Interval interval = new Interval(1, 5);
+		Interval interval = new Interval(TipoVehiculo.values().length - 1);
 		
 		String matricula;
 		boolean matriculaYaEnTaller = false;
@@ -31,11 +31,11 @@ public class Vehiculo {
 		int tipoVehiculoNumeroOpcion = 0;
 		TipoVehiculo tipoVehiculo;
 
-		gestorIO.out("Por favor, introduce los siguientes datos.\n\n");
+		gestorIO.out("Por favor, introduce los siguientes datos:\n\n\n");
 
 		do {
 			matriculaYaEnTaller = false;
-			gestorIO.out("Matrícula(4 cifras y 3 letras mayúsculas): ");
+			gestorIO.out("·Matrícula(4 cifras y 3 letras mayúsculas): ");
 			matricula = gestorIO.inString();
 			if (matricula.matches("^[0-9]{4}[A-Z]{3}$")) {
 				for (int i = 0; i < todosLosVehiculos.length && todosLosVehiculos[i] != null; i++) {
@@ -47,21 +47,21 @@ public class Vehiculo {
 			}
 		} while (!matricula.matches("^[0-9]{4}[A-Z]{3}$") || matriculaYaEnTaller);
 
-		gestorIO.out("\nModelo: ");
+		gestorIO.out("\n·Modelo: ");
 		modelo = gestorIO.inString();
 
 		do {
-			gestorIO.out("\n[1] Coche   [2] Furgoneta   [3] Microbús   [4] Camión   [5] Otro\nTipo de Vehiculo: ");
+			gestorIO.out("\n[0]Coche   [1]Furgoneta   [2]Microbús   [3]Camión   [4]Otro\n·Tipo de Vehiculo: ");
 			try {
 				tipoVehiculoNumeroOpcion = Integer.parseInt(gestorIO.inString());
 			} catch (Exception e) {}
-		} while (interval.inclou(tipoVehiculoNumeroOpcion));
-		tipoVehiculo = TipoVehiculo.values()[tipoVehiculoNumeroOpcion - 1];
+		} while (!interval.inclou(Double.valueOf(tipoVehiculoNumeroOpcion)));
+		tipoVehiculo = TipoVehiculo.values()[tipoVehiculoNumeroOpcion];
 
 		return new Vehiculo(matricula, modelo, tipoVehiculo);
 	}
 
 	public void mostrarVehiculo() {
-		System.out.printf("matricula:%s - modelo:%s - tipoVehiculo:%s\n", this.matricula, this.modelo, this.tipoVehiculo);
+		System.out.printf("matricula:%s - modelo:%s - tipoVehiculo:%s", this.matricula, this.modelo, this.tipoVehiculo);
 	}
 }

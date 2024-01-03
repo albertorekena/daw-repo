@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2024-01-03T04:13:56.865Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36" etag="1PHx46PFutSIg5-_0nsB" version="22.1.16" type="device">
+<mxfile host="app.diagrams.net" modified="2024-01-03T09:47:43.918Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36" etag="OMXzTb7qCLDFws5nCHbs" version="22.1.16" type="device">
   <diagram name="Page-1" id="sTLAMJMNHMfNNX3CN_xu">
-    <mxGraphModel dx="1698" dy="1510" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="1980" dy="1647" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -84,7 +84,7 @@
             <mxPoint x="140" y="380" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="CRdkFB1iniQtbO10i1_w-36" value="" style="endArrow=open;html=1;endSize=12;startArrow=diamondThin;startSize=14;startFill=0;edgeStyle=orthogonalEdgeStyle;align=left;verticalAlign=bottom;rounded=0;entryX=0.497;entryY=1.016;entryDx=0;entryDy=0;entryPerimeter=0;exitX=-0.002;exitY=0.197;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" edge="1" target="CRdkFB1iniQtbO10i1_w-30" source="CRdkFB1iniQtbO10i1_w-12">
+        <mxCell id="CRdkFB1iniQtbO10i1_w-36" value="" style="endArrow=open;html=1;endSize=12;startArrow=diamondThin;startSize=14;startFill=0;edgeStyle=orthogonalEdgeStyle;align=left;verticalAlign=bottom;rounded=0;entryX=0.497;entryY=1.016;entryDx=0;entryDy=0;entryPerimeter=0;exitX=-0.002;exitY=0.197;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" source="CRdkFB1iniQtbO10i1_w-12" target="CRdkFB1iniQtbO10i1_w-30" edge="1">
           <mxGeometry x="-1" y="3" relative="1" as="geometry">
             <mxPoint x="620" y="680" as="sourcePoint" />
             <mxPoint x="348" y="553.6599999999999" as="targetPoint" />
@@ -147,7 +147,7 @@
         <mxCell id="jXtiLCyHxi5xTeZDXRqE-7" value="+Taller()&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;+main(String[] args):void&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;-iniciar():String&lt;br&gt;-impresionNumerosBoxesSegunOcupadoParaEntrar():void&lt;br&gt;-numeroValidoMeterCocheBox():int&lt;br&gt;-impresionNumerosBoxesSegunVacio():void" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="jXtiLCyHxi5xTeZDXRqE-4" vertex="1">
           <mxGeometry y="104" width="340" height="130" as="geometry" />
         </mxCell>
-        <mxCell id="QAxCqBadEBV5wjQsiGxa-2" value="" style="endArrow=open;html=1;endSize=12;startArrow=diamondThin;startSize=14;startFill=0;edgeStyle=orthogonalEdgeStyle;align=left;verticalAlign=bottom;rounded=0;entryX=1.004;entryY=0.185;entryDx=0;entryDy=0;entryPerimeter=0;exitX=0;exitY=0.245;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="jXtiLCyHxi5xTeZDXRqE-7" target="CRdkFB1iniQtbO10i1_w-20">
+        <mxCell id="QAxCqBadEBV5wjQsiGxa-2" value="" style="endArrow=open;html=1;endSize=12;startArrow=diamondThin;startSize=14;startFill=0;edgeStyle=orthogonalEdgeStyle;align=left;verticalAlign=bottom;rounded=0;entryX=1.004;entryY=0.185;entryDx=0;entryDy=0;entryPerimeter=0;exitX=0;exitY=0.245;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" source="jXtiLCyHxi5xTeZDXRqE-7" target="CRdkFB1iniQtbO10i1_w-20" edge="1">
           <mxGeometry x="-1" y="3" relative="1" as="geometry">
             <mxPoint x="504" y="110" as="sourcePoint" />
             <mxPoint x="664" y="110" as="targetPoint" />

@@ -52,15 +52,15 @@ public class Taller {
 								gestorIO.out("\n\n-------------------------------------");
 								gestorIO.out("\n\nEL VEHICULO HA SIDO INTRODUCIDO CORRECTAMENTE EN EL SISTEMA.");
 								gestorIO.out("\nPosición del vehículo en la cola --> " + posicionVehiculoEnCola + "\n");
-								gestorIO.out("\n\n-------------------------------------\n\n\n");
 							}
 						}
 					} else {
 						gestorIO.out("\n\n-------------------------------------");
 						gestorIO.out("\n\n El VEHICULO NO HA SIDO INTRODUCIDO EN EL SISTEMA. NO caben más vehículos en la cola.\n");
 					}
-
+					
 					this.cola.mostrarVehiculos();
+					gestorIO.out("\n-------------------------------------\n\n");
 					break;
 
 				case 2:
@@ -72,7 +72,7 @@ public class Taller {
 						todosLosBoxesOcupadosParaEntrar = this.impresionNumerosBoxesSegunOcupadoParaEntrar();
 
 						if (!todosLosBoxesOcupadosParaEntrar) {
-							gestorIO.out("Indica el Box al cual se dirigirá el vehículo: ");
+							gestorIO.out("Indica el Box al cual se dirigira el vehículo: ");
 							boxElegido = this.numeroValidoMeterCocheBox();
 							vehiculo = this.cola.vehiculoEntraABox();
 							this.boxes[boxElegido].meterVehiculo(vehiculo);
@@ -107,7 +107,7 @@ public class Taller {
 						boxElegido = this.elegirNumeroBox();
 						this.moverCochesDentroBox(boxElegido);
 
-						gestorIO.out("\nEstado del Box " + boxElegido + " ACTUALIZADO:");
+						gestorIO.out("\n\nEstado del Box " + boxElegido + " ACTUALIZADO:");
 						this.boxes[boxElegido].mostrarEstadoDentroDelBox();
 						gestorIO.out("\n\n-------------------------------------\n\n");
 					} else {
@@ -250,7 +250,8 @@ public class Taller {
 			}
 
 			this.boxes[boxElegido].moverVehiculosBox();
-			gestorIO.out("Los vehículos han cambiado de fase correctamente dentro del box.");
+			gestorIO.out("\n\n-------------------------------------\n");
+			gestorIO.out("\nLos vehículos han cambiado de fase correctamente dentro del box.");
 		} else {
 			gestorIO.out("\nEl box que has seleccionado se encuentra VACIO. NO hay coches que mover.");
 		}

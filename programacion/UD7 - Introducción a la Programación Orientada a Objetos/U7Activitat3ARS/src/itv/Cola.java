@@ -4,13 +4,16 @@ import itv.util.GestorIO;
 
 public class Cola {
 	public static final int MAX_LONGITUD_COLA = 50;
-	
+
 	private Vehiculo[] colaVehiculos = new Vehiculo[MAX_LONGITUD_COLA];
 
 	private GestorIO gestorIO = new GestorIO();
 
-
 	Cola() {}
+
+	public Vehiculo[] getColaVehiculos() {
+		return this.colaVehiculos.clone();
+	}
 
 	public int vehiculoLlegaACola(Vehiculo vehiculo) {
 		boolean vehiculoAdmitido = false;
@@ -34,6 +37,10 @@ public class Cola {
 			System.out.printf("·Posición vehículo --> %d\n", i);
 			this.colaVehiculos[i].mostrarVehiculo();
 			System.out.print("\n");
+		}
+		
+		if (this.colaVehiculos[0] == null) {
+			gestorIO.out("COLA VACIA\n");
 		}
 
 		gestorIO.out("\n-------------------------------------\n");

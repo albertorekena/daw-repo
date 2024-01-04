@@ -14,37 +14,37 @@ public class Box {
 		return this.fases[0].vacio() ? true : false;
 	}
 
-	public void meterCoche(Vehiculo vehiculo) {
-		this.fases[0].setFaseVehiculo(vehiculo);
+	public void meterVehiculo(Vehiculo vehiculo) {
+		this.fases[0].setVehiculo(vehiculo);
 	}
 
-	public boolean boxVacio() {
-		boolean boxVacio = true;
+	public boolean completamenteVacio() {
+		boolean boxCompletamenteVacio = true;
 
-		for (int i = 0; i < this.fases.length && boxVacio; i++) {
-			boxVacio = this.fases[i].vacio() ? true : false;
+		for (int i = 0; i < this.fases.length && boxCompletamenteVacio; i++) {
+			boxCompletamenteVacio = this.fases[i].vacio() ? true : false;
 		}
 
-		return boxVacio;
+		return boxCompletamenteVacio;
 	}
 
 	public Vehiculo vehiculoEnUltimaFase() {
 		return this.fases[this.fases.length - 1].getVehiculo();
 	}
 	
-	public void moverCochesBox() {
+	public void moverVehiculosBox() {
 		for (int i = this.fases.length - 1; i > 0; i--) {
 			if (this.fases[i - 1].getVehiculo() != null) {
-				this.fases[i].setFaseVehiculo(this.fases[i - 1].getVehiculo());
+				this.fases[i].setVehiculo(this.fases[i - 1].getVehiculo());
 			}
 
-			this.fases[0].setFaseVehiculo(null);
+			this.fases[0].setVehiculo(null);
 		}
 	}
 
 	public void mostrarEstadoDentroDelBox() {
 		for (int i = 0; i < this.fases.length; i++) {
-			this.fases[i].mostrarFaseVehiculo();
+			this.fases[i].mostrarVehiculo();
 		}
 	}
 }

@@ -3,12 +3,12 @@ package itv;
 import itv.util.GestorIO;
 
 public class Fase {
+	public static final String[] FASES= {"SEGURIDAD", "SISTEMA ELÉCTRICO", "EMISIÓN HUMOS","FRENOS"};
+
 	private int indice;
 	private String nombre;
 	private Vehiculo vehiculo;
 	private GestorIO gestorIO = new GestorIO();
-
-	public static final String[] FASES= {"SEGURIDAD", "SISTEMA ELÉCTRICO", "EMISIÓN HUMOS","FRENOS"};
 
 	Fase(int indice, String nombre) {
 		this.indice = indice;
@@ -16,7 +16,7 @@ public class Fase {
 	}
 
 	public Vehiculo getVehiculo() {
-		Vehiculo vehiculo = null;
+		Vehiculo vehiculo;
 
 		if (this.vehiculo != null) {
 			vehiculo = new Vehiculo(this.vehiculo);
@@ -26,8 +26,8 @@ public class Fase {
 
 		return vehiculo;
 	}
-	
-	public void setFaseVehiculo(Vehiculo vehiculo) {
+
+	public void setVehiculo(Vehiculo vehiculo) {
 		this.vehiculo = new Vehiculo(vehiculo);
 	}
 
@@ -35,7 +35,7 @@ public class Fase {
 		return this.vehiculo == null ? true : false;
 	}
 
-	public void mostrarFaseVehiculo() {
+	public void mostrarVehiculo() {
 		gestorIO.out("\n[" + this.indice + "]" + "Fase:" + this.nombre + " --> ");
 		if (this.vehiculo != null) {
 			this.vehiculo.mostrarVehiculo();

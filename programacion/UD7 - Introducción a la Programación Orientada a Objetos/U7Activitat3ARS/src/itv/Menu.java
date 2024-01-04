@@ -4,7 +4,6 @@ import itv.util.*;
 
 public class Menu {
 	private Interval interval = new Interval(1, OPCIONES.length);
-
 	private static GestorIO gestorIO = new GestorIO();
 
 	private static final String[] OPCIONES = {

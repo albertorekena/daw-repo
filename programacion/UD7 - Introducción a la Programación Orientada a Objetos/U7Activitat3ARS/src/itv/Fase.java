@@ -15,8 +15,16 @@ public class Fase {
 		this.nombre = nombre;
 	}
 
-	public Vehiculo getFaseVehiculo() {
-		return new Vehiculo(this.vehiculo);
+	public Vehiculo getVehiculo() {
+		Vehiculo vehiculo = null;
+
+		if (this.vehiculo != null) {
+			vehiculo = new Vehiculo(this.vehiculo);
+		} else {
+			vehiculo = null;
+		}
+
+		return vehiculo;
 	}
 	
 	public void setFaseVehiculo(Vehiculo vehiculo) {

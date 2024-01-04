@@ -5,6 +5,7 @@ import itv.util.*;
 public class Taller {
 	private Cola cola = null;
 	private Box[] boxes;
+	
 	public final int NUMERO_BOXES = 6;
 	private Vehiculo[] todosLosVehiculosEnGestion = new Vehiculo[Cola.MAX_LONGITUD_COLA + (this.NUMERO_BOXES * Fase.FASES.length)];
 	private Vehiculo[] todosLosVehiculosGestionados = new Vehiculo[1000];
@@ -126,7 +127,7 @@ public class Taller {
 		for (int i = 0; i < boxes.length; i++) {
 			String impresionNumerosBoxesSegunOcupadoParaEntrar = boxes[i].disponible() ? String.valueOf(i) : "OCUPADO";
 			if (i < boxes.length - 1) {
-				System.out.printf("[%s]  ", impresionNumerosBoxesSegunOcupadoParaEntrar);
+				System.out.printf("[%s]   ", impresionNumerosBoxesSegunOcupadoParaEntrar);
 			} else {
 				System.out.printf("[%s]\n", impresionNumerosBoxesSegunOcupadoParaEntrar);
 			}

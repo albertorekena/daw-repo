@@ -7,20 +7,6 @@ public class Vehiculo {
 	private String modelo;
 	private TipoVehiculo tipoVehiculo;
 
-	Vehiculo(String matricula, String modelo, TipoVehiculo tipoVehiculo) {
-		this.matricula = matricula;
-		this.modelo = modelo;
-		this.tipoVehiculo = tipoVehiculo;
-	}
-
-	Vehiculo(Vehiculo vehiculo) {
-		this(vehiculo.matricula, vehiculo.modelo, vehiculo.tipoVehiculo);
-	}
-
-	public String getMatricula() {
-		return this.matricula;
-	}
-
 	public static Vehiculo vehiculoValido(Vehiculo[] todosLosVehiculos) {
 		GestorIO gestorIO = new GestorIO();
 		Interval interval = new Interval(TipoVehiculo.values().length - 1);
@@ -59,6 +45,20 @@ public class Vehiculo {
 		tipoVehiculo = TipoVehiculo.values()[tipoVehiculoNumeroOpcion];
 
 		return new Vehiculo(matricula, modelo, tipoVehiculo);
+	}
+
+	Vehiculo(String matricula, String modelo, TipoVehiculo tipoVehiculo) {
+		this.matricula = matricula;
+		this.modelo = modelo;
+		this.tipoVehiculo = tipoVehiculo;
+	}
+
+	Vehiculo(Vehiculo vehiculo) {
+		this(vehiculo.matricula, vehiculo.modelo, vehiculo.tipoVehiculo);
+	}
+
+	public String getMatricula() {
+		return this.matricula;
 	}
 
 	public void mostrarVehiculo() {

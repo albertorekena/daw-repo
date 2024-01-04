@@ -4,10 +4,11 @@ import itv.util.GestorIO;
 
 public class Cola {
 	public static final int MAX_LONGITUD_COLA = 50;
-
+	
 	private Vehiculo[] colaVehiculos = new Vehiculo[MAX_LONGITUD_COLA];
 
 	private GestorIO gestorIO = new GestorIO();
+
 
 	Cola() {}
 

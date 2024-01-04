@@ -10,12 +10,8 @@ public class Box {
 		}
 	}
 
-	public Fase[] getfases() {
-		return this.fases.clone();
-	}
-
 	public boolean disponible() {
-		return !this.fases[0].vacio() ? true : false;
+		return this.fases[0].vacio() ? true : false;
 	}
 
 	public void meterCoche(Vehiculo vehiculo) {
@@ -25,7 +21,7 @@ public class Box {
 	public boolean boxVacio() {
 		boolean boxVacio = true;
 
-		for (int i = 0; i < this.fases.length && !boxVacio; i++) {
+		for (int i = 0; i < this.fases.length && boxVacio; i++) {
 			boxVacio = this.fases[i].vacio() ? true : false;
 		}
 
@@ -33,13 +29,13 @@ public class Box {
 	}
 
 	public Vehiculo vehiculoEnUltimaFase() {
-		return this.fases[this.fases.length - 1].getFaseVehiculo();
+		return this.fases[this.fases.length - 1].getVehiculo();
 	}
 	
 	public void moverCochesBox() {
 		for (int i = this.fases.length - 1; i > 0; i--) {
-			if (this.fases[i - 1].getFaseVehiculo() != null) {
-				this.fases[i].setFaseVehiculo(this.fases[i - 1].getFaseVehiculo());
+			if (this.fases[i - 1].getVehiculo() != null) {
+				this.fases[i].setFaseVehiculo(this.fases[i - 1].getVehiculo());
 			}
 
 			this.fases[0].setFaseVehiculo(null);

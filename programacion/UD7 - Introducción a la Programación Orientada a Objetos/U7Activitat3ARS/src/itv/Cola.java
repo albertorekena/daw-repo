@@ -42,8 +42,6 @@ public class Cola {
 		if (this.colaVehiculos[0] == null) {
 			gestorIO.out("COLA VACIA\n");
 		}
-
-		gestorIO.out("\n-------------------------------------\n");
 	}
 
 	private void vehiculoDejaCola() {

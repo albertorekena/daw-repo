@@ -7,7 +7,7 @@ public class Taller {
 	private Box[] boxes;
 	public final int NUMERO_BOXES = 6;
 	private Vehiculo[] todosLosVehiculosEnGestion = new Vehiculo[Cola.MAX_LONGITUD_COLA + (this.NUMERO_BOXES * Fase.FASES.length)];
-	private Vehiculo[] todosLosVehiculosGestionados = new Vehiculo[1000];
+	private Vehiculo[] todosLosVehiculosGestionados = new Vehiculo[4];
 	private GestorIO gestorIO = new GestorIO();
 
 	Taller() {
@@ -52,6 +52,7 @@ public class Taller {
 								gestorIO.out("\n\n-------------------------------------");
 								gestorIO.out("\n\nEL VEHICULO HA SIDO INTRODUCIDO CORRECTAMENTE EN EL SISTEMA.");
 								gestorIO.out("\nPosición del vehículo en la cola --> " + posicionVehiculoEnCola + "\n");
+								gestorIO.out("\n\n-------------------------------------\n\n\n");
 							}
 						}
 					} else {
@@ -80,6 +81,9 @@ public class Taller {
 							gestorIO.out("\n\nEL VEHICULO CORRESPONDIENTE DE LA COLA HA PASADO AL BOX SELECCIONADO.");
 
 							this.cola.mostrarVehiculos();
+							gestorIO.out("\nEstado del Box " + boxElegido + " ACTUALIZADO:");
+							this.boxes[boxElegido].mostrarEstadoDentroDelBox();
+							gestorIO.out("\n\n-------------------------------------\n\n");
 						} else {
 							gestorIO.out("TODOS LOS BOXES TIENEN SU 1era FASE OCUPADA. AHORA NO PUEDE ACCEDER NINGUN VEHICULO A NINGUNO DE ELLOS.");
 						}
@@ -100,7 +104,12 @@ public class Taller {
 					todosLosBoxesCompletamenteVacios = this.impresionNumerosBoxesSegunVacio();
 					if (!todosLosBoxesCompletamenteVacios) {
 						gestorIO.out("Indica el número de Box en el que quieres que avancen los vehículos: ");
-						this.moverCochesDentroBox();
+						boxElegido = this.elegirNumeroBox();
+						this.moverCochesDentroBox(boxElegido);
+
+						gestorIO.out("\nEstado del Box " + boxElegido + " ACTUALIZADO:");
+						this.boxes[boxElegido].mostrarEstadoDentroDelBox();
+						gestorIO.out("\n\n-------------------------------------\n\n");
 					} else {
 						gestorIO.out("-------------------------------------\n");
 						gestorIO.out("TODOS LOS BOXES ESTAN VACIOS. NO PUEDES MOVER VEHICULOS");
@@ -112,10 +121,15 @@ public class Taller {
 					gestorIO.out("\n\n-------------------------------------\n");
 					gestorIO.out("-------- OPCION 4 SELECCIONADA ------\n");
 					gestorIO.out("-------------------------------------\n\n");
-
+					
+					gestorIO.out("\n[0]   [1]   [3]   [4]   [5]   [6]\n");
 					gestorIO.out("Indica el número de Box del que quieres mostrar la informacion: ");
 					boxElegido = this.elegirNumeroBox();
+
+					gestorIO.out("\n-------------------------------------\n");
+					gestorIO.out("\nESTADO DEL BOX " + boxElegido + "\n");
 					this.boxes[boxElegido].mostrarEstadoDentroDelBox();
+					gestorIO.out("\n\n-------------------------------------\n\n");
 					break;
 
 				case 5:
@@ -126,12 +140,11 @@ public class Taller {
 					for (int i = 0; i < this.boxes.length; i++) {
 						gestorIO.out("---- BOX " + i + " ----");
 						this.boxes[i].mostrarEstadoDentroDelBox();
-						gestorIO.out("\n\n");
+						gestorIO.out("\n\n-------------------------------------\n\n");
 					}
 					break;
 
 				default:
-					gestorIO.out("\n\n---- PROGRAMA TERMINADO ----\n\n");
 					break;
 			}
 		} while (opcionElegida != 6);
@@ -139,7 +152,7 @@ public class Taller {
 		gestorIO.out("\n\n-------------------------------------\n");
 		gestorIO.out("-------- OPCION 6 SELECCIONADA ------\n");
 		gestorIO.out("-------------------------------------\n\n");
-		gestorIO.out("---- Programa terminado ----");
+		gestorIO.out("\n---- PROGRAMA TERMINADO ----\n\n\n");
 	}
 
 	private boolean impresionNumerosBoxesSegunOcupadoParaEntrar() {
@@ -226,9 +239,7 @@ public class Taller {
 		return todosLosBoxesVacios;
 	}
 
-	private void moverCochesDentroBox() {
-		int boxElegido = this.elegirNumeroBox();
-
+	private void moverCochesDentroBox(int boxElegido) {
 		if (!this.boxes[boxElegido].completamenteVacio()) {
 			if (this.boxes[boxElegido].vehiculoEnUltimaFase() != null) {
 				for (int i = 0; i < this.todosLosVehiculosGestionados.length; i++) {

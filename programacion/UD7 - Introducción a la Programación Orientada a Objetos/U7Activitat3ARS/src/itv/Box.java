@@ -37,9 +37,9 @@ public class Box {
 			if (this.fases[i - 1].getVehiculo() != null) {
 				this.fases[i].setVehiculo(this.fases[i - 1].getVehiculo());
 			}
-
-			this.fases[0].setVehiculo(null);
 		}
+
+		this.fases[0].setVehiculo(null);
 	}
 
 	public void mostrarEstadoDentroDelBox() {

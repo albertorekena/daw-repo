@@ -3,7 +3,7 @@ package itv;
 import itv.util.GestorIO;
 
 public class Fase {
-	public static final String[] FASES= {"SEGURIDAD", "SISTEMA ELÉCTRICO", "EMISIÓN HUMOS","FRENOS"};
+	public static final String[] FASES= {"SEGURIDAD", "SISTEMA ELECTRICO", "EMISION HUMOS","FRENOS"};
 
 	private int indice;
 	private String nombre;
@@ -28,7 +28,11 @@ public class Fase {
 	}
 
 	public void setVehiculo(Vehiculo vehiculo) {
-		this.vehiculo = new Vehiculo(vehiculo);
+		if (vehiculo != null) {
+			this.vehiculo = new Vehiculo(vehiculo);
+		} else {
+			this.vehiculo = null;
+		}
 	}
 
 	public boolean vacio() {
